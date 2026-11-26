@@ -5,6 +5,9 @@ import { useDragScroll } from "@/lib/useDragScroll";
 import { COMING_SOON, IN_STOCK } from "@/lib/products";
 import { useInView } from "@/lib/useInView";
 
+const WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+const countWord = (n: number) => WORDS[n] ?? String(n);
+
 function Heading({
   eyebrow,
   title,
@@ -76,18 +79,19 @@ export default function ProductsShowcase() {
                 In Stock — <em className="font-light">Ready to Ship</em>
               </>
             }
-            sub="Four signature scents, hand-crafted and ready for your ritual. Free shipping on orders over Rs 800."
+            sub={`${countWord(IN_STOCK.length)} signature scents, hand-crafted and ready for your ritual. Free shipping on orders over Rs 800.`}
             visible={stockIn}
           />
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* 3 columns keeps the full collection of 9 in tidy rows */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {IN_STOCK.map((p, i) => (
             <div
               key={p.id}
               style={{
                 opacity: stockIn ? 1 : 0,
                 transform: `translateY(${stockIn ? 0 : 48}px)`,
-                transition: `opacity 0.8s ease ${0.1 + 0.1 * i}s, transform 0.8s ease ${0.1 + 0.1 * i}s`,
+                transition: `opacity 0.8s ease ${0.1 + 0.06 * i}s, transform 0.8s ease ${0.1 + 0.06 * i}s`,
               }}
             >
               <ProductCard product={p} />
@@ -95,6 +99,8 @@ export default function ProductsShowcase() {
           ))}
         </div>
 
+        {COMING_SOON.length > 0 && (
+        <>
         <div ref={divRef}>
           <Divider visible={divIn} />
         </div>
@@ -146,6 +152,8 @@ export default function ProductsShowcase() {
             ›
           </button>
         </div>
+        </>
+        )}
       </div>
     </section>
   );
