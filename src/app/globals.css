@@ -1,0 +1,386 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-brand-cream text-brand-charcoal;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply rounded-full bg-brand-plum px-6 py-3 font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose focus:ring-offset-2;
+  }
+  .btn-outline {
+    @apply rounded-full border border-brand-sand bg-transparent px-6 py-3 font-medium text-brand-plum transition-all duration-200 hover:border-brand-rose hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose focus:ring-offset-2;
+  }
+  .input-field {
+    @apply w-full rounded-xl border border-brand-sand bg-brand-cream px-4 py-3 font-sans text-sm text-brand-charcoal transition-colors duration-200 placeholder:text-brand-muted focus:border-transparent focus:outline-none focus:ring-2 focus:ring-brand-rose;
+  }
+  .card {
+    @apply rounded-2xl border border-brand-sand bg-white transition-all duration-300;
+  }
+  .section-eyebrow {
+    @apply mb-3 text-xs font-medium uppercase tracking-[5px] text-brand-rose;
+  }
+  .section-title {
+    @apply font-serif leading-tight text-brand-plum;
+  }
+}
+
+::selection {
+  background: #c0dccb;
+  color: #1a3d2a;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-20px) rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg) scale(0.6);
+    opacity: 0;
+  }
+}
+.animate-fall {
+  animation: fall linear infinite;
+}
+
+@keyframes ringPulse {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.liquid-fill {
+  position: relative;
+  overflow: hidden;
+}
+.liquid-fill::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: rgba(192, 220, 203, 0.3);
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.liquid-fill:hover::after {
+  height: 100%;
+}
+
+.card-3d-wrap {
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.text-luxury {
+  background: linear-gradient(135deg, #c0dccb, #4a8c6a 40%, #82b08e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes pageReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-reveal {
+  animation: pageReveal 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(74, 140, 106, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(74, 140, 106, 0.45);
+  }
+}
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: -200%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+.text-shimmer {
+  background: linear-gradient(90deg, #4a8c6a 25%, #c0dccb 50%, #4a8c6a 75%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 3s linear infinite;
+}
+
+@keyframes goldShimmer {
+  0% {
+    opacity: 0.5;
+    background-position: -200% 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+    background-position: 200% 0;
+  }
+}
+
+/* ---------- Hero: morphing blobs + animated waves ---------- */
+.blob-morph-1 {
+  animation: blobMorph1 12s ease-in-out infinite alternate;
+}
+.blob-morph-2 {
+  animation: blobMorph2 16s ease-in-out infinite alternate;
+}
+.blob-morph-3 {
+  animation: blobMorph3 10s ease-in-out infinite alternate;
+}
+@keyframes blobMorph1 {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: scale(1) rotate(0deg);
+  }
+  33% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: scale(1.08) rotate(5deg);
+  }
+  66% {
+    border-radius: 50% 50% 20% 80% / 25% 80% 20% 75%;
+    transform: scale(0.95) rotate(-3deg);
+  }
+  100% {
+    border-radius: 70% 30% 50% 50% / 40% 50% 60% 60%;
+    transform: scale(1.05) rotate(8deg);
+  }
+}
+@keyframes blobMorph2 {
+  0% {
+    border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    border-radius: 70% 30% 40% 60% / 40% 70% 30% 60%;
+    transform: scale(1.1) rotate(-6deg);
+  }
+  100% {
+    border-radius: 30% 70% 70% 30% / 60% 40% 60% 40%;
+    transform: scale(0.92) rotate(10deg);
+  }
+}
+@keyframes blobMorph3 {
+  0% {
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    transform: scale(1);
+  }
+  100% {
+    border-radius: 70% 30% 30% 70% / 40% 60% 40% 60%;
+    transform: scale(1.15);
+  }
+}
+.wave-back {
+  animation: waveShift 8s ease-in-out infinite alternate;
+}
+.wave-front {
+  animation: waveShift2 6s ease-in-out infinite alternate;
+}
+@keyframes waveShift {
+  0% {
+    d: path("M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z");
+  }
+  100% {
+    d: path("M0,40 C240,80 480,10 720,50 C960,90 1200,30 1440,50 L1440,120 L0,120 Z");
+  }
+}
+@keyframes waveShift2 {
+  0% {
+    d: path("M0,80 C180,40 360,100 540,70 C720,40 900,90 1080,65 C1260,40 1380,80 1440,70 L1440,120 L0,120 Z");
+  }
+  100% {
+    d: path("M0,70 C200,100 380,45 560,80 C740,110 880,50 1100,75 C1280,95 1380,60 1440,80 L1440,120 L0,120 Z");
+  }
+}
+
+/* ================= Interaction & motion layer ================= */
+:root {
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Press feedback on every button. `scale` composes with existing transforms, so nothing jumps. */
+button:not(:disabled):active,
+.press:active {
+  scale: 0.97;
+}
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+:focus-visible {
+  outline: 2px solid #c9a84c;
+  outline-offset: 3px;
+}
+
+/* Film-grain texture for a printed, luxurious feel */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grainShift 1.2s steps(4) infinite;
+}
+@keyframes grainShift {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -3%); }
+  75% { transform: translate(-2%, -1%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Scent-notes marquee */
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* Light sweep across product cards on hover */
+.card-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.13) 46%, rgba(255, 240, 200, 0.06) 52%, transparent 62%);
+  transform: translateX(-120%);
+}
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .card-shine {
+    transform: translateX(120%);
+    transition: transform 1s var(--ease-out-strong);
+  }
+}
+
+/* Nav link hover underline that grows from the left */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: rgba(201, 168, 76, 0.6);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 300ms var(--ease-out-strong);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Gentle float for hero/product imagery */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.float-y {
+  animation: floatY 6s ease-in-out infinite;
+}
+
+/* Drag-to-scroll affordance */
+.drag-scroll {
+  cursor: grab;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  .grain { display: none; }
+}
+
+/* Hero "Discover" cue: a light drop travelling down the line */
+@keyframes scrollCue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(260%); }
+}
+.scroll-cue {
+  animation: scrollCue 1.8s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+/* Review cards lift and warm up on hover */
+.review-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+}
+.review-card > * {
+  transition: transform 300ms var(--ease-out-strong);
+}
+@media (hover: hover) and (pointer: fine) {
+  .review-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(201, 168, 76, 0.4);
+    box-shadow: 0 20px 50px -18px rgba(201, 168, 76, 0.35);
+  }
+  .review-card:hover > * {
+    transform: translateY(-3px);
+  }
+}
